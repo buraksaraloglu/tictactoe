@@ -1,107 +1,112 @@
 *,
 *::before,
 *::after {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
-	margin: 0;
-	background-color: ghostwhite;
+  margin: 0;
+  background-color: ghostwhite;
 }
 
 .board {
-	margin: auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .board h1,
 .board h2 {
-	font-family: serif;
-	line-height: 0.8;
-	font-weight: normal;
+  font-family: serif;
+  line-height: 0.8;
+  font-weight: normal;
 }
 
 .board h1 {
-	margin: 10rem 0 0;
-	font-size: 4rem;
-	letter-spacing: 1.3rem;
-	color: blue;
+  margin: 10rem 0 0;
+  font-size: 4rem;
+  letter-spacing: 1.3rem;
+  color: blue;
+}
+
+.board h2,
+.board span {
+  color: lightslategray;
 }
 
 .board h2 {
-	font-size: 2rem;
-	margin: 2rem 0;
-	letter-spacing: normal;
-	color: lightslategray;
+  font-size: 2rem;
+  margin: 2rem 0 0.5rem;
+  letter-spacing: normal;
+}
+
+.board span {
+  margin: 0 0 2rem;
 }
 
 .board .game-box {
-	width: 300px;
-	height: 300px;
-	background-color: floralwhite;
-	border: 2px solid blue;
-	-webkit-box-shadow: 5px 5px 0 gold;
-	box-shadow: 5px 5px 0 gold;
-	display: -ms-grid;
-	display: grid;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	justify-items: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-ms-flex-line-pack: center;
-	align-content: center;
-	-ms-grid-columns: (auto)[3];
-	grid-template-columns: repeat(3, auto);
+  width: 300px;
+  height: 300px;
+  background-color: floralwhite;
+  border: 2px solid blue;
+  -webkit-box-shadow: 5px 5px 0 gold;
+          box-shadow: 5px 5px 0 gold;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
 }
 
 .board .game-box .cell {
-	width: 100px;
-	height: 100px;
-	border: 1px solid blue;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	position: relative;
-	cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border: 1px solid blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
 }
 
-.board .game-box .cell.x::before,
-.board .game-box .cell.x::after,
-.board .game-box .cell.circle::before {
-	background-color: blue;
+.board .game-box .cell.x::before, .board .game-box .cell.x::after, .board .game-box .cell.circle::before {
+  background-color: blue;
 }
 
-.board .game-box .cell.x,
-.board .game-box .cell.circle {
-	cursor: not-allowed;
+.board .game-box .cell.x, .board .game-box .cell.circle {
+  cursor: not-allowed;
 }
 
 .game-box.x .cell:not(.x):not(.circle):hover::before,
 .game-box.x .cell:not(.x):not(.circle):hover::after,
 .game-box.circle .cell:not(.x):not(.circle):hover::before {
-	background-color: #ccccff;
+  background-color: #ccccff;
 }
 
 .cell.x::before,
@@ -109,102 +114,102 @@ body {
 .cell.x::before,
 .game-box.x .cell:not(.x):not(.circle):hover::before,
 .game-box.x .cell:not(.x):not(.circle):hover::after {
-	content: '';
-	position: absolute;
-	width: 9px;
-	height: 90px;
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 90px;
 }
 
 .cell.x::before,
 .game-box.x .cell:not(.x):not(.circle):hover::before {
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .cell.x::after,
 .game-box.x .cell:not(.x):not(.circle):hover::after {
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .cell.circle::before,
 .cell.circle::after,
 .game-box.circle .cell:not(.x):not(.circle):hover::before,
 .game-box.circle .cell:not(.x):not(.circle):hover::after {
-	content: '';
-	position: absolute;
-	border-radius: 50%;
+  content: '';
+  position: absolute;
+  border-radius: 50%;
 }
 
 .cell.circle::before,
 .game-box.circle .cell:not(.x):not(.circle):hover::before {
-	width: 76.5px;
-	height: 76.5px;
+  width: 76.5px;
+  height: 76.5px;
 }
 
 .cell.circle::after,
 .game-box.circle .cell:not(.x):not(.circle):hover::after {
-	width: 58.5px;
-	height: 58.5px;
-	background-color: floralwhite;
+  width: 58.5px;
+  height: 58.5px;
+  background-color: floralwhite;
 }
 
 .result-message {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.95);
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	color: white;
-	font-size: 7rem;
-	font-family: 'Arial', 'Helvetica', sans-serif;
-	font-weight: 400;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 7rem;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: 400;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .result-message div::-moz-selection {
-	background-color: gold;
+  background-color: gold;
 }
 
 .result-message div::selection {
-	background-color: gold;
+  background-color: gold;
 }
 
 .result-message button {
-	font-size: 3rem;
-	background-color: white;
-	border: none;
-	padding: .25em .5em;
-	cursor: pointer;
-	-webkit-transition: .1s all ease-in;
-	transition: .1s all ease-in;
-	color: blue;
-	margin-top: 3rem;
+  font-size: 3rem;
+  background-color: white;
+  border: none;
+  padding: .25em .5em;
+  cursor: pointer;
+  -webkit-transition: .1s all ease-in;
+  transition: .1s all ease-in;
+  color: blue;
+  margin-top: 3rem;
 }
 
 .result-message button:hover {
-	background-color: gold;
+  background-color: gold;
 }
 
 .result-message button:focus {
-	background-color: #ccac00;
-	outline: none;
-	border: none;
+  background-color: #ccac00;
+  outline: none;
+  border: none;
 }
 
 .result-message.show {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
