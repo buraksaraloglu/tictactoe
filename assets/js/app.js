@@ -13,9 +13,9 @@ let initGame = () => {
 };
 
 let handleClick = (e) => {
+	turn = human;
 	const cell = e.target;
 	placeMark(cell);
-	swapTurns();
 };
 
 // Swapping Turns
@@ -39,6 +39,8 @@ let setBoardHoverClass = () => {
 let placeMark = (cell) => {
 	cell.classList.add(turn);
 	finalControl();
+
+	swapTurns();
 };
 
 // Check if there is winning combination on board

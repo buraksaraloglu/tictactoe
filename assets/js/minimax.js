@@ -17,13 +17,11 @@ let bestMove = () => {
 		j++;
 	}
 	placeMark(cellElements[move]);
-
-	swapTurns();
 };
 
 let scores = {
-	X: -100,
-	O: 100,
+	X: -10,
+	O: 10,
 	tie: 0
 };
 let tempTurn;
@@ -32,9 +30,9 @@ let minimax = (board, depth, isMaximizing) => {
 	let result = checkWinner(tempTurn);
 	if (result) {
 		if (turn === human) {
-			return scores.X;
+			return scores.X + depth;
 		} else {
-			return scores.O;
+			return scores.O - depth;
 		}
 	}
 
@@ -42,9 +40,9 @@ let minimax = (board, depth, isMaximizing) => {
 		let bestScore = -Infinity;
 		for (let i = 0; i < board.length; i++) {
 			if (!board[i].classList.contains(human) && !board[i].classList.contains(ai)) {
-				board[i].classList.add(ai);
+				board[i].classList.add(human);
 				let score = minimax(board, depth + 1, false);
-				board[i].classList.remove(ai);
+				board[i].classList.remove(human);
 				bestScore = Math.max(score, bestScore);
 			}
 		}
@@ -53,9 +51,9 @@ let minimax = (board, depth, isMaximizing) => {
 		let bestScore = Infinity;
 		for (let i = 0; i < board.length; i++) {
 			if (!board[i].classList.contains(human) && !board[i].classList.contains(ai)) {
-				board[i].classList.add(human);
+				board[i].classList.add(ai);
 				let score = minimax(board, depth + 1, true);
-				board[i].classList.remove(human);
+				board[i].classList.remove(ai);
 				bestScore = Math.min(score, bestScore);
 			}
 		}
