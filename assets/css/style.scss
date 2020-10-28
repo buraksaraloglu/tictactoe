@@ -10,6 +10,10 @@ $mark-size: $cell-size * .9;
 $gameColor: blue;
 $gameBoxBg: floralwhite;
 
+$breakpoint-tablet: 768px;
+
+$breakpoint-phone: 415px;
+
 body {
 	margin: 0;
 	background-color: ghostwhite;
@@ -165,5 +169,20 @@ body {
 	}
 	&.show {
 		display: flex;
+	}
+}
+
+@media (max-width: $breakpoint-tablet) {
+	h1 {
+		margin-top: 4rem !important;
+	}
+}
+
+@media (max-width: $breakpoint-phone) {
+	h1 {
+		margin-top: 4rem !important;
+		font-size: 2.7rem !important;
+		letter-spacing: 0.8rem !important;
+		line-height: 1 !important;
 	}
 }
