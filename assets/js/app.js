@@ -15,7 +15,9 @@ let initGame = () => {
 let handleClick = (e) => {
 	turn = human;
 	const cell = e.target;
-	placeMark(cell);
+	if (!cell.classList.contains(human) && !cell.classList.contains(ai)) {
+		placeMark(cell);
+	}
 };
 
 // Swapping Turns
@@ -39,8 +41,11 @@ let setBoardHoverClass = () => {
 let placeMark = (cell) => {
 	cell.classList.add(turn);
 	finalControl();
-
-	swapTurns();
+	let result = checkWinner(turn);
+	if (!result) {
+		swapTurns();
+	}
+	console.log(result);
 };
 
 // Check if there is winning combination on board
@@ -59,7 +64,7 @@ let isDraw = () => {
 };
 
 let endGame = (tie) => {
-	tie ? (winningText.innerText = 'Draw!') : (winningText.innerText = `${turn === human ? 'X' : 'O'} wins.`);
+	tie ? (winningText.innerText = 'Draw!') : (winningText.innerText = `${turn === human ? 'O' : 'X'} wins.`);
 	tie
 		? (resultPage.style.backgroundColor = 'rgba(64, 64, 64, 0.9)')
 		: turn === human
@@ -84,8 +89,8 @@ const winningText = document.querySelector('[data-result-message-text]');
 const resultPage = document.getElementById('resultMessage');
 let turn;
 let board = [];
-const human = 'x';
-const ai = 'circle';
+const human = 'circle';
+const ai = 'x';
 const winCombinations = [
 	[ 0, 1, 2 ],
 	[ 3, 4, 5 ],
