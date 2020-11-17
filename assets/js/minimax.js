@@ -36,8 +36,8 @@ let tempTurn;
 
 let minimax = (board, depth, isMaximizing) => {
   let scores = {
-    X: 10 - depth,
-    O: -10 - depth,
+    X: 1000 - depth,
+    O: 1000 + depth,
     tie: 0,
   };
   let result = checkWinner(tempTurn);
@@ -50,7 +50,7 @@ let minimax = (board, depth, isMaximizing) => {
   }
 
   if (isMaximizing) {
-    let bestScore = -Infinity;
+    let bestScore = -100;
     for (let i = 0; i < board.length; i++) {
       if (
         !board[i].classList.contains(human) &&
@@ -66,7 +66,7 @@ let minimax = (board, depth, isMaximizing) => {
     }
     return bestScore;
   } else {
-    let bestScore = Infinity;
+    let bestScore = 10000;
     for (let i = 0; i < board.length; i++) {
       if (
         !board[i].classList.contains(human) &&
