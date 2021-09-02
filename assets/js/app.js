@@ -1,4 +1,4 @@
-let initGame = () => {
+const initGame = () => {
 	cellElements.forEach((cell) => {
 		board.push(cell);
 		cell.classList.remove(human);
@@ -6,8 +6,11 @@ let initGame = () => {
 		cell.removeEventListener('click', handleClick);
 		cell.addEventListener('click', handleClick, { once: true });
 	});
-	turn = ai;
-	bestMove();
+	turn = Math.floor(Math.random() * 10) % 2 ? human : ai;
+	console.log('turn', turn);
+	if(turn === ai) {
+		bestMove();
+	}
 	setBoardHoverClass();
 	resultPage.classList.remove('show');
 };
@@ -21,13 +24,13 @@ let handleClick = (e) => {
 };
 
 // Swapping Turns
-let swapTurns = () => {
+const swapTurns = () => {
 	turn === ai ? (turn = human) : bestMove();
 	setBoardHoverClass();
 };
 
 // Showing moves on mouse hover
-let setBoardHoverClass = () => {
+const setBoardHoverClass = () => {
 	if (turn === human) {
 		gameBox.classList.remove(ai);
 		gameBox.classList.add(human);
@@ -38,18 +41,17 @@ let setBoardHoverClass = () => {
 };
 
 // Placing Mark
-let placeMark = (cell) => {
+const placeMark = (cell) => {
 	cell.classList.add(turn);
 	finalControl();
 	let result = checkWinner(turn);
 	if (!result) {
 		swapTurns();
 	}
-	console.log(result);
 };
 
 // Check if there is winning combination on board
-let checkWinner = (turn) => {
+const checkWinner = (turn) => {
 	return winCombinations.some((combination) => {
 		return combination.every((index) => {
 			return cellElements[index].classList.contains(turn);
@@ -57,13 +59,13 @@ let checkWinner = (turn) => {
 	});
 };
 
-let isDraw = () => {
+const isDraw = () => {
 	return [ ...cellElements ].every((cell) => {
 		return cell.classList.contains(human) || cell.classList.contains(ai);
 	});
 };
 
-let endGame = (tie) => {
+const endGame = (tie) => {
 	tie ? (winningText.innerText = 'Draw!') : (winningText.innerText = `${turn === human ? 'O' : 'X'} wins.`);
 	tie
 		? (resultPage.style.backgroundColor = 'rgba(64, 64, 64, 0.9)')
@@ -73,7 +75,7 @@ let endGame = (tie) => {
 	resultPage.classList.add('show');
 };
 
-let finalControl = () => {
+const finalControl = () => {
 	if (checkWinner(turn)) {
 		endGame(false);
 	} else if (isDraw()) {
@@ -88,7 +90,7 @@ const resetBtn = document.getElementById('restartButton');
 const winningText = document.querySelector('[data-result-message-text]');
 const resultPage = document.getElementById('resultMessage');
 let turn;
-let board = [];
+const board = [];
 const human = 'circle';
 const ai = 'x';
 const winCombinations = [

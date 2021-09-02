@@ -1,8 +1,10 @@
-let bestMove = () => {
+let tempTurn;
+
+const bestMove = () => {
   turn = ai;
   let bestScore = -Infinity;
   let move;
-  let availCells = [];
+  const availCells = [];
   cellElements.forEach((cell) => {
     if (!cell.classList.contains(human) && !cell.classList.contains(ai)) {
       availCells.push(cell);
@@ -20,7 +22,7 @@ let bestMove = () => {
       ) {
         cellElements[i].classList.add(ai);
         tempTurn = human;
-        let score = minimax(cellElements, 0, false);
+        const score = minimax(cellElements, 0, false);
         cellElements[i].classList.remove(ai);
         if (score > bestScore) {
           bestScore = score;
@@ -32,12 +34,11 @@ let bestMove = () => {
   }
 };
 
-let tempTurn;
 
-let minimax = (board, depth, isMaximizing) => {
+const minimax = (board, depth, isMaximizing) => {
   let scores = {
-    X: 10 - depth,
-    O: 10 + depth,
+    X: -50 + depth,
+    O: 50 - depth,
     tie: 0,
   };
   let result = checkWinner(tempTurn);
@@ -59,7 +60,7 @@ let minimax = (board, depth, isMaximizing) => {
         board[i].classList.add(ai);
         tempTurn = human;
 
-        let score = minimax(board, depth + 1, false);
+        const score = minimax(board, depth - 1, false);
         board[i].classList.remove(ai);
         bestScore = Math.max(score, bestScore);
       }
@@ -75,7 +76,7 @@ let minimax = (board, depth, isMaximizing) => {
         board[i].classList.add(human);
         tempTurn = ai;
 
-        let score = minimax(board, depth + 1, true);
+        const score = minimax(board, depth - 1, true);
         board[i].classList.remove(human);
         bestScore = Math.min(score, bestScore);
       }
